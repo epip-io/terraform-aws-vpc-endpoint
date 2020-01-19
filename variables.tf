@@ -50,14 +50,14 @@ variable "vpc_id" {
   description = "VPC ID where subnets will be created (e.g. `vpc-aceb2723`)"
 }
 
-variable "public_subnet_ids" {
+variable "public_route_table_ids" {
   type        = list(string)
   default     = []
-  description = "AWS public subnet ids"
+  description = "AWS public route table ids"
 }
 
-variable "private_subnet_ids" {
+variable "private_route_table_ids" {
   type        = list(string)
   default     = []
-  description = "AWS private subnet ids"
+  description = "AWS private route table ids"
 }

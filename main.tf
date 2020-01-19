@@ -20,17 +20,17 @@ resource "aws_vpc_endpoint" "s3" {
 }
 
 resource "aws_vpc_endpoint_route_table_association" "private_s3" {
-  count = length(var.private_subnet_ids)
+  count = length(var.private_route_table_ids)
 
   vpc_endpoint_id = aws_vpc_endpoint.s3.id
-  route_table_id  = element(var.private_subnet_ids, count.index)
+  route_table_id  = element(var.private_route_table_ids, count.index)
 }
 
 resource "aws_vpc_endpoint_route_table_association" "public_s3" {
-  count = length(var.public_subnet_ids)
+  count = length(var.public_route_table_ids)
 
   vpc_endpoint_id = aws_vpc_endpoint.s3.id
-  route_table_id  = element(var.public_subnet_ids, count.index)
+  route_table_id  = element(var.public_route_table_ids, count.index)
 }
 
 ############################
@@ -47,15 +47,15 @@ resource "aws_vpc_endpoint" "dynamodb" {
 }
 
 resource "aws_vpc_endpoint_route_table_association" "private_dynamodb" {
-  count = length(var.private_subnet_ids)
+  count = length(var.private_route_table_ids)
 
   vpc_endpoint_id = aws_vpc_endpoint.dynamodb.id
-  route_table_id  = element(var.private_subnet_ids, count.index)
+  route_table_id  = element(var.private_route_table_ids, count.index)
 }
 
 resource "aws_vpc_endpoint_route_table_association" "public_dynamodb" {
-  count = length(var.public_subnet_ids)
+  count = length(var.public_route_table_ids)
 
   vpc_endpoint_id = aws_vpc_endpoint.dynamodb.id
-  route_table_id  = element(var.public_subnet_ids, count.index)
+  route_table_id  = element(var.public_route_table_ids, count.index)
 }
