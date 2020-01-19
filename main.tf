@@ -1,12 +1,12 @@
 module "label" {
-  source              = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.14.0"
-  attributes          = var.attributes
-  namespace           = var.namespace
-  environment         = var.environment
-  stage               = var.stage
-  delimiter           = var.delimiter
-  name                = var.name
-  tags                = var.tags
+  source      = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.14.0"
+  attributes  = var.attributes
+  namespace   = var.namespace
+  environment = var.environment
+  stage       = var.stage
+  delimiter   = var.delimiter
+  name        = var.name
+  tags        = var.tags
 }
 
 data "aws_vpc_endpoint_service" "s3" {
@@ -16,7 +16,7 @@ data "aws_vpc_endpoint_service" "s3" {
 resource "aws_vpc_endpoint" "s3" {
   vpc_id       = var.vpc_id
   service_name = data.aws_vpc_endpoint_service.s3.service_name
-  tags         = var.tags
+  tags         = module.label.tags
 }
 
 resource "aws_vpc_endpoint_route_table_association" "private_s3" {
@@ -43,7 +43,7 @@ data "aws_vpc_endpoint_service" "dynamodb" {
 resource "aws_vpc_endpoint" "dynamodb" {
   vpc_id       = var.vpc_id
   service_name = data.aws_vpc_endpoint_service.dynamodb.service_name
-  tags         = var.tags
+  tags         = module.label.tags
 }
 
 resource "aws_vpc_endpoint_route_table_association" "private_dynamodb" {
