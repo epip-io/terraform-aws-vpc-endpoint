@@ -39,6 +39,17 @@ variable "tags" {
   description = "Additional tags (e.g. map(`BusinessUnit`,`XYZ`)"
 }
 
+variable "region" {
+  type        = string
+  default     = "us-east-1"
+  description = "AWS region"
+}
+
+variable "vpc_id" {
+  type        = string
+  description = "VPC ID where subnets will be created (e.g. `vpc-aceb2723`)"
+}
+
 variable "public_subnet_ids" {
   type        = list(string)
   default     = []
